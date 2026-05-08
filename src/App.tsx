@@ -10,7 +10,7 @@ import GlobalNav from "./components/GlobalNav";
 
 export default function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(() => {
-    return localStorage.getItem("site_access") === "true";
+    return sessionStorage.getItem("site_access") === "true";
   });
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -19,7 +19,7 @@ export default function App() {
     e.preventDefault();
     if (password === "6020") {
       setIsAuthenticated(true);
-      localStorage.setItem("site_access", "true");
+      sessionStorage.setItem("site_access", "true");
     } else {
       setError("Falscher Code. Bitte erneut versuchen.");
     }
