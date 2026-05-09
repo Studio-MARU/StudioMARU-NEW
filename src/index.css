@@ -22,6 +22,16 @@
   }
 }
 
+::selection {
+  background-color: black !important;
+  color: white !important;
+}
+
+::-moz-selection {
+  background-color: black !important;
+  color: white !important;
+}
+
 .glass-pill {
   background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(var(--glass-blur));

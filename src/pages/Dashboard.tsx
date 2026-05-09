@@ -112,10 +112,12 @@ function NewProjectView() {
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="max-w-6xl mx-auto"
+      className="max-w-5xl mx-auto"
     >
-      <h1 className="text-3xl font-bold text-gray-900 mb-2">Neues Projekt starten</h1>
-      <p className="text-gray-500 mb-12">Bestelle handgeschriebene Postkarten oder Briefe für deine Kunden.</p>
+      <div className="md:text-left text-center">
+        <h1 className="text-3xl font-bold text-gray-900 mb-2">Neues Projekt starten</h1>
+        <p className="text-gray-500 mb-12">Bestelle handgeschriebene Postkarten oder Briefe für deine Kunden.</p>
+      </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* Form */}
@@ -341,7 +343,7 @@ export default function Dashboard() {
         <div className={`p-6 border-b border-white/50 ${!isDarkMode ? 'bg-[#F3F3F4]' : ''}`}>
           <div className="flex flex-col items-center justify-center gap-4">
             <button onClick={() => setActiveTab('profile')} className="w-20 h-16 overflow-hidden rounded-[2rem] border-2 border-black flex items-center justify-center shrink-0 bg-[#F4F5FB] shadow-md hover:scale-105 transition-transform" title="Profil & Einstellungen">
-              <img src="/frog-bird.png" alt="Studio Maru Profil" className="w-full h-full object-cover object-center scale-[1.15] mix-blend-multiply flex-shrink-0" />
+              <img src="/logoicon.png" alt="Studio Maru Profil" className="w-full h-full object-cover object-center scale-[1.15] mix-blend-multiply flex-shrink-0" />
             </button>
             <span className="text-2xl font-bold text-gray-900 tracking-tight">Kundenportal</span>
           </div>
@@ -385,22 +387,22 @@ export default function Dashboard() {
           </button>
         </nav>
         <div className={`p-4 border-t border-white/50 ${!isDarkMode ? 'bg-[#F3F3F4]' : ''}`}>
-          <button onClick={handleLogout} className="w-full flex items-center justify-center gap-3 px-6 py-4 rounded-full font-bold uppercase text-xs tracking-[0.15em] transition-colors bg-transparent border-2 border-black text-black hover:bg-black hover:text-[#EBEBEB]">
+          <button onClick={handleLogout} className="w-full flex items-center justify-center gap-3 px-6 py-4 rounded-full font-bold uppercase text-xs tracking-[0.15em] transition-colors bg-transparent border-2 border-[#e78806] text-[#e78806] hover:bg-[#e78806] hover:text-[#EBEBEB]">
             <LogOut size={18} /> Abmelden
           </button>
         </div>
       </aside>
 
       {/* Mobile Header */}
-      <div className="md:hidden fixed top-0 left-0 right-0 section-glass border-b border-white/50 z-[60] px-6 py-2 flex flex-col items-center justify-center gap-1">
-        <button onClick={() => setActiveTab('profile')} className="w-16 h-14 overflow-hidden rounded-[1.5rem] border-2 border-black flex items-center justify-center shrink-0 bg-[#F4F5FB] shadow-sm hover:scale-105 transition-transform" title="Profil & Einstellungen">
-          <img src="/frog-bird.png" alt="Studio Maru Profil" className="w-full h-full object-cover object-center scale-[1.15] mix-blend-multiply flex-shrink-0" />
+      <div className="md:hidden absolute top-0 left-0 right-0 px-6 pt-6 pb-[18px] flex flex-col items-center justify-center gap-1 z-[40] bg-[#f3f3f4] border-b border-[#FFFFFF]">
+        <button onClick={() => setActiveTab('profile')} className="w-20 h-16 overflow-hidden rounded-[2rem] border-2 border-black flex items-center justify-center shrink-0 bg-[#F4F5FB] shadow-sm hover:scale-105 transition-transform" title="Profil & Einstellungen">
+          <img src="/logoicon.png" alt="Studio Maru Profil" className="w-full h-full object-cover object-center scale-[1.15] mix-blend-multiply flex-shrink-0" />
         </button>
-        <span className="text-xl font-bold text-gray-900 tracking-tight">Kundenportal</span>
-        <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="absolute right-6 top-6 p-2 border-2 border-black rounded-full text-black hover:bg-black hover:text-[#EBEBEB] transition-colors">
-          <Menu size={20} className="hover:text-current" />
-        </button>
+        <span className="text-[28px] font-bold text-gray-900 tracking-tight">Kundenportal</span>
       </div>
+      <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="md:hidden fixed right-6 top-6 py-2 px-[12px] mt-[13px] border-2 border-black rounded-full text-black hover:bg-black hover:text-[#EBEBEB] active:bg-black active:text-[#EBEBEB] transition-colors z-[60] bg-white/80 backdrop-blur-md">
+        <Menu size={20} className="hover:text-current" />
+      </button>
 
       {/* Mobile Menu Dropdown */}
       <AnimatePresence>
@@ -431,7 +433,7 @@ export default function Dashboard() {
                   exit={{ opacity: 0, y: -20, scale: 0.9, transition: { delay: (5 - i) * 0.05 } }}
                   transition={{ delay: i * 0.05 + 0.1, type: "spring", stiffness: 300, damping: 24 }}
                   onClick={() => { setActiveTab(item.id); setMobileMenuOpen(false); }}
-                  className={`w-full flex items-center justify-center gap-3 px-6 py-5 rounded-full font-bold uppercase text-sm tracking-[0.15em] transition-colors ${activeTab === item.id ? 'bg-black text-[#EBEBEB]' : 'bg-transparent border-2 border-black text-black hover:bg-black hover:text-[#EBEBEB]'}`}
+                  className={`w-full flex items-center justify-center gap-3 px-6 py-5 rounded-full font-bold uppercase text-sm tracking-[0.15em] transition-colors ${activeTab === item.id ? 'bg-black text-[#EBEBEB]' : 'bg-transparent border-2 border-black text-black hover:bg-black hover:text-[#EBEBEB] active:bg-black active:text-[#EBEBEB]'}`}
                 >
                   <item.icon size={18} /> {item.label}
                 </motion.button>
@@ -444,7 +446,7 @@ export default function Dashboard() {
                 transition={{ delay: 6 * 0.05 + 0.1, type: "spring", stiffness: 300, damping: 24 }}
               >
                 <div className="h-px bg-black/20 my-2" />
-                <button onClick={handleLogout} className="w-full flex items-center justify-center gap-3 px-6 py-5 rounded-full font-bold uppercase text-sm tracking-[0.15em] transition-colors bg-transparent border-2 border-black text-black hover:bg-black hover:text-[#EBEBEB]">
+                <button onClick={handleLogout} className="mt-[21px] w-full flex items-center justify-center gap-3 px-6 py-5 rounded-full font-bold uppercase text-sm tracking-[0.15em] transition-colors bg-transparent border-2 border-[#e78806] text-[#e78806] hover:bg-[#e78806] hover:text-[#EBEBEB] active:bg-[#e78806] active:text-[#EBEBEB]">
                   <LogOut size={18} /> Abmelden
                 </button>
               </motion.div>
@@ -454,16 +456,16 @@ export default function Dashboard() {
       </AnimatePresence>
 
       {/* Main Content */}
-      <main className={`flex-1 p-6 pt-32 md:pt-12 md:p-12 overflow-y-auto relative z-10 ${!isDarkMode ? 'bg-[#EBEBEB]' : ''}`}>
+      <main className={`flex-1 p-6 pt-[190px] md:pt-12 md:p-12 overflow-y-auto relative z-10 ${!isDarkMode ? 'bg-[#EBEBEB]' : ''}`}>
         {activeTab === 'profile' && (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="space-y-8 max-w-2xl"
+            className="space-y-8 max-w-5xl mx-auto lg:mx-0 lg:max-w-2xl"
           >
-            <div>
-              <h2 className="text-3xl font-bold text-gray-900 mb-2">Profil & Einstellungen</h2>
-              <p className="text-gray-500">Verwalten Sie Ihr Konto und das Erscheinungsbild des Portals.</p>
+            <div className="md:text-left text-center">
+              <h1 className="text-3xl font-bold text-gray-900 mb-2">Profil & Einstellungen</h1>
+              <p className="text-gray-500 mb-12">Verwalten Sie Ihr Konto und das Erscheinungsbild des Portals.</p>
             </div>
 
             <div className="section-glass rounded-3xl p-6 md:p-8 border border-white/50 space-y-6">
@@ -532,8 +534,10 @@ export default function Dashboard() {
             animate={{ opacity: 1, y: 0 }}
             className="max-w-5xl mx-auto"
           >
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">Willkommen zurück!</h1>
-            <p className="text-gray-500 mb-12">Hier finden Sie alle aktuellen Dokumente und Projektfortschritte.</p>
+            <div className="md:text-left text-center">
+              <h1 className="text-3xl font-bold text-gray-900 mb-2">Willkommen zurück!</h1>
+              <p className="text-gray-500 mb-12">Hier finden Sie alle aktuellen Dokumente und Projektfortschritte.</p>
+            </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
               {/* Project Status Card */}
@@ -630,13 +634,15 @@ export default function Dashboard() {
             animate={{ opacity: 1, y: 0 }}
             className="max-w-5xl mx-auto h-[600px] flex flex-col"
           >
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">Nachrichten</h1>
-            <p className="text-gray-500 mb-6">Ihr direkter Draht zu Studio Maru.</p>
+            <div className="md:text-left text-center shrink-0">
+              <h1 className="text-3xl font-bold text-gray-900 mb-2">Nachrichten</h1>
+              <p className="text-gray-500 mb-6">Ihr direkter Draht zu Studio Maru.</p>
+            </div>
             
             <div className="flex-1 section-glass rounded-3xl border border-white/50 flex flex-col overflow-hidden z-10 relative">
               <div className="p-4 border-b border-white/50 bg-white/50 backdrop-blur-md flex items-center gap-3">
-                <div className="w-14 h-10 overflow-hidden rounded-[1.2rem] border-2 border-black flex items-center justify-center shrink-0 bg-[#F4F5FB] shadow-sm">
-                    <img src="/frog-bird.png" alt="Studio Maru" className="w-full h-full object-cover object-center scale-[1.15] mix-blend-multiply flex-shrink-0" />
+                <div className="w-[3.75rem] h-[3rem] overflow-hidden rounded-[1rem] border-2 border-black flex items-center justify-center shrink-0 bg-[#F4F5FB] shadow-sm">
+                    <img src="/logoicon.png" alt="Studio Maru" className="w-full h-full object-cover object-center scale-[1.15] mix-blend-multiply flex-shrink-0" />
                 </div>
                 <div>
                     <h3 className="font-bold text-sm">Studio Maru Support</h3>
@@ -661,7 +667,25 @@ export default function Dashboard() {
           </motion.div>
         )}
 
-        {activeTab === 'new_project' && <NewProjectView />}
+        {activeTab === 'new_project' && (
+          <div className="w-full h-full">
+            <div className="md:hidden flex flex-col items-center justify-center min-h-[50vh] text-center px-4 space-y-4">
+               <div className="w-20 h-20 bg-black/5 rounded-full flex items-center justify-center mb-4">
+                 <Maximize className="text-black w-8 h-8" />
+               </div>
+               <h2 className="text-2xl font-bold text-gray-900">Desktop benötigt<br />für die Erstellung</h2>
+               <p className="text-gray-600 max-w-xs">
+                 Ein neues Projekt kann detailliert nur über die Desktop-Version gestartet werden. Bitte loggen Sie sich an einem Computer ein.
+               </p>
+               <button onClick={() => setActiveTab('overview')} className="mt-6 border-2 border-black px-6 py-3 rounded-full font-bold uppercase text-xs tracking-[0.15em] transition-colors bg-transparent text-black hover:bg-black hover:text-white">
+                 Zurück zur Übersicht
+               </button>
+            </div>
+            <div className="hidden md:block w-full h-full">
+              <NewProjectView />
+            </div>
+          </div>
+        )}
 
         {activeTab === 'templates' && (
           <motion.div
@@ -669,8 +693,10 @@ export default function Dashboard() {
             animate={{ opacity: 1, y: 0 }}
             className="max-w-5xl mx-auto"
           >
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">Vorlagen</h1>
-            <p className="text-gray-500 mb-12">Nutzen Sie unsere vorgefertigten Designs für Ihre Postkarten und Briefe.</p>
+            <div className="md:text-left text-center">
+              <h1 className="text-3xl font-bold text-gray-900 mb-2">Vorlagen</h1>
+              <p className="text-gray-500 mb-12">Nutzen Sie unsere vorgefertigten Designs für Ihre Postkarten und Briefe.</p>
+            </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {[1, 2, 3, 4, 5, 6].map((i) => (
                 <div key={i} className="section-glass p-4 rounded-3xl shadow-sm border border-white/50 group cursor-pointer hover:shadow-md transition-all">
@@ -693,15 +719,17 @@ export default function Dashboard() {
             animate={{ opacity: 1, y: 0 }}
             className="max-w-5xl mx-auto"
           >
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">Beispiele</h1>
-            <p className="text-gray-500 mb-12">Lassen Sie sich von erfolgreichen Kampagnen unserer Kunden inspirieren.</p>
+            <div className="md:text-left text-center">
+              <h1 className="text-3xl font-bold text-gray-900 mb-2">Beispiele</h1>
+              <p className="text-gray-500 mb-12">Lassen Sie sich von erfolgreichen Kampagnen unserer Kunden inspirieren.</p>
+            </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="section-glass p-6 rounded-3xl shadow-sm border border-white/50">
-                <div className="bg-gray-200 rounded-2xl h-64 mb-6 flex items-center justify-center overflow-hidden relative group">
-                  <img src="/almis-front.png" alt="Almi's Berghotel Vorderseite" className="absolute inset-0 w-full h-full object-cover group-hover:opacity-0 transition-opacity duration-500" />
-                  <img src="/almis-back.png" alt="Almi's Berghotel Rückseite" className="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  <div className="absolute top-4 right-4 bg-black/50 backdrop-blur-md text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-full pointer-events-none">
-                    Hover für Rückseite
+                <div tabIndex={0} className="bg-gray-200 rounded-2xl h-64 mb-6 flex items-center justify-center overflow-hidden relative group outline-none">
+                  <img src="/almis-front.png" alt="Almi's Berghotel Vorderseite" className="absolute inset-0 w-full h-full object-cover group-hover:opacity-0 group-active:opacity-0 group-focus:opacity-0 transition-opacity duration-500" />
+                  <img src="/almis-back.png" alt="Almi's Berghotel Rückseite" className="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 group-active:opacity-100 group-focus:opacity-100 transition-opacity duration-500" />
+                  <div className="absolute top-4 right-4 bg-black/50 backdrop-blur-md text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-full pointer-events-none transition-opacity duration-500 group-hover:opacity-0 group-active:opacity-0 group-focus:opacity-0">
+                    Tap / Hover
                   </div>
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-2">Almi's Berghotel</h3>
@@ -726,8 +754,10 @@ export default function Dashboard() {
             animate={{ opacity: 1, y: 0 }}
             className="max-w-5xl mx-auto"
           >
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">Infos & Neuheiten</h1>
-            <p className="text-gray-500 mb-12">Bleiben Sie auf dem Laufenden über neue Formate, Preise und Updates.</p>
+            <div className="md:text-left text-center">
+              <h1 className="text-3xl font-bold text-gray-900 mb-2">Infos & Neuheiten</h1>
+              <p className="text-gray-500 mb-12">Bleiben Sie auf dem Laufenden über neue Formate, Preise und Updates.</p>
+            </div>
             <div className="space-y-6">
               <div className="section-glass p-8 rounded-3xl shadow-sm border border-white/50">
                 <div className="flex items-center gap-3 mb-4">
@@ -759,8 +789,10 @@ export default function Dashboard() {
             animate={{ opacity: 1, y: 0 }}
             className="max-w-5xl mx-auto"
           >
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">Vergangene Projekte</h1>
-            <p className="text-gray-500 mb-12">Eine Übersicht Ihrer bisherigen Aufträge und abgeschlossenen Projekte.</p>
+            <div className="md:text-left text-center">
+              <h1 className="text-3xl font-bold text-gray-900 mb-2">Vergangene Projekte</h1>
+              <p className="text-gray-500 mb-12">Eine Übersicht Ihrer bisherigen Aufträge und abgeschlossenen Projekte.</p>
+            </div>
             
             <div className="section-glass p-8 rounded-3xl shadow-sm border border-white/50 text-center">
               <History className="w-12 h-12 text-gray-300 mx-auto mb-4" />

@@ -72,22 +72,22 @@ export default function GlobalNav() {
               initial={{ y: 0, opacity: 1 }}
               animate={{ y: isVisible || isMenuOpen ? 0 : -100, opacity: isVisible || isMenuOpen ? 1 : 0 }}
               transition={{ duration: 0.3 }}
-              className="flex items-center gap-2 bg-[#EBEBEB]/80 backdrop-blur-md border-2 border-black px-5 py-3 rounded-full shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:bg-[#EBEBEB] transition-colors"
+              className="flex items-center gap-2 bg-[#EBEBEB]/80 backdrop-blur-md border-2 border-black px-0 py-3 rounded-full shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:bg-[#EBEBEB] transition-colors"
             >
               {!isMenuOpen ? (
                 <>
-                  <a href="/" onClick={handleHomeClick} className="flex items-center gap-2 font-bold uppercase tracking-widest text-sm text-black hover:bg-black hover:text-[#EBEBEB] transition-colors px-4 py-2 rounded-full">
+                  <a href="/" onClick={handleHomeClick} className="flex items-center gap-2 font-bold uppercase tracking-widest text-sm text-black hover:bg-black hover:text-[#EBEBEB] active:bg-black active:text-[#EBEBEB] transition-colors pl-4 pr-0 py-2 rounded-full">
                     <Home size={18} strokeWidth={2} />
                     Home
                   </a>
                   <div className="w-0.5 h-5 bg-black mx-1" />
-                  <button onClick={() => setIsMenuOpen(true)} className="flex items-center gap-2 font-bold uppercase tracking-widest text-sm text-black hover:bg-black hover:text-[#EBEBEB] transition-colors px-4 py-2 rounded-full">
+                  <button onClick={() => setIsMenuOpen(true)} className="flex items-center gap-2 font-bold uppercase tracking-widest text-sm text-black hover:bg-black hover:text-[#EBEBEB] active:bg-black active:text-[#EBEBEB] transition-colors pl-0 pr-4 py-2 rounded-full">
                     <Menu size={18} strokeWidth={2} />
                     Menü
                   </button>
                 </>
               ) : (
-                <button onClick={() => setIsMenuOpen(false)} className="flex items-center gap-2 font-bold uppercase tracking-widest text-sm text-black hover:bg-black hover:text-[#EBEBEB] transition-colors px-4 py-2 rounded-full">
+                <button onClick={() => setIsMenuOpen(false)} className="flex items-center gap-2 font-bold uppercase tracking-widest text-sm text-black hover:bg-black hover:text-[#EBEBEB] active:bg-black active:text-[#EBEBEB] transition-colors px-4 py-2 rounded-full">
                   <X size={18} strokeWidth={2} />
                   Zurück
                 </button>
@@ -113,7 +113,7 @@ export default function GlobalNav() {
                           target={item.href.startsWith('http') ? "_blank" : undefined}
                           rel={item.href.startsWith('http') ? "noopener noreferrer" : undefined}
                           onClick={() => setIsMenuOpen(false)}
-                          className="bg-transparent border-2 border-black px-8 py-5 rounded-full flex items-center justify-center text-center font-bold uppercase text-sm tracking-[0.15em] text-black hover:bg-black hover:text-[#EBEBEB] transition-colors w-full"
+                          className="bg-transparent border-2 border-black px-8 py-5 rounded-full flex items-center justify-center text-center font-bold uppercase text-sm tracking-[0.15em] text-black hover:bg-black hover:text-[#EBEBEB] active:bg-black active:text-[#EBEBEB] transition-colors w-full"
                         >
                           <span className="text-center">{item.label}</span>
                         </a>
@@ -121,7 +121,7 @@ export default function GlobalNav() {
                         <Link 
                           to={item.href} 
                           onClick={() => setIsMenuOpen(false)}
-                          className="bg-transparent border-2 border-black px-8 py-5 rounded-full flex items-center justify-center text-center font-bold uppercase text-sm tracking-[0.15em] text-black hover:bg-black hover:text-[#EBEBEB] transition-colors w-full"
+                          className="bg-transparent border-2 border-black px-8 py-5 rounded-full flex items-center justify-center text-center font-bold uppercase text-sm tracking-[0.15em] text-black hover:bg-black hover:text-[#EBEBEB] active:bg-black active:text-[#EBEBEB] transition-colors w-full"
                         >
                           <span className="text-center">{item.label}</span>
                         </Link>

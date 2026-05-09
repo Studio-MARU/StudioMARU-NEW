@@ -12,7 +12,7 @@ export default function AboutUs() {
           className="space-y-12"
         >
           <h1 className="text-5xl md:text-7xl font-bold tracking-tighter leading-none text-[#1a1a1a]">
-            WER WIR SIND
+            WER SIND WIR
           </h1>
           
           <div className="prose prose-lg text-black max-w-none">
@@ -30,8 +30,18 @@ export default function AboutUs() {
               <div>
                 <h2 className="text-2xl font-bold mb-4">Unser Ansatz</h2>
                 <p className="text-gray-700">
-                  vom ersten Buchstaben bis zum letzten Punkt.
+                  Vom ersten Buchstaben bis zum letzten Punkt.
                 </p>
+                <div className="mt-4">
+                  <span className="text-gray-700 text-2xl leading-none flex items-center gap-3">
+                    A 
+                    <svg width="60" height="24" viewBox="0 0 60 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-gray-700">
+                      <line x1="0" y1="12" x2="56" y2="12"></line>
+                      <polyline points="48 6 56 12 48 18"></polyline>
+                    </svg>
+                    &bull;
+                  </span>
+                </div>
               </div>
             </div>
             

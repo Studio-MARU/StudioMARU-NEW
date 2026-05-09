@@ -20,7 +20,7 @@ export default function SearchModal({ isOpen, onClose }: { isOpen: boolean; onCl
 
   const options = [
     { title: "Unsere Arbeiten (Portfolio)", path: "/portfolio", keywords: ["portfolio", "arbeiten", "projekte", "works"] },
-    { title: "Wer wir sind (Info)", path: "/about", keywords: ["info", "about", "wer wir sind", "über uns", "agentur"] },
+    { title: "Wer sind wir (Info)", path: "/about", keywords: ["info", "about", "wer sind wir", "über uns", "agentur"] },
     { title: "Kundenportal", path: "/login", keywords: ["kunden", "portal", "login", "dashboard"] }
   ];
 

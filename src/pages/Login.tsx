@@ -36,8 +36,8 @@ export default function Login() {
           className="section-glass p-8 md:p-10 rounded-[2rem] shadow-xl border border-white/50 bg-white/40 max-w-md w-full"
         >
           <div className="text-center mb-8">
-            <div className="w-28 h-20 mx-auto mb-6 overflow-hidden rounded-[2.5rem] border-2 border-black flex items-center justify-center bg-[#F4F5FB] shadow-sm">
-              <img src="/frog-bird.png" alt="Studio Maru Logo" className="w-full h-full object-cover object-center scale-[1.15] mix-blend-multiply flex-shrink-0" />
+            <div className="w-20 h-16 mx-auto mb-6 overflow-hidden rounded-[2rem] border-2 border-black flex items-center justify-center bg-[#F4F5FB] shadow-sm">
+              <img src="/logoicon.png" alt="Studio Maru Logo" className="w-full h-full object-cover object-center scale-[1.15] mix-blend-multiply flex-shrink-0" />
             </div>
             <h1 className="text-3xl font-bold text-gray-900 mb-2 tracking-tight">Kundenportal</h1>
             <p className="text-gray-500 text-sm">Bitte logge dich ein, um fortzufahren.</p>
