@@ -1,6 +1,6 @@
-import { motion } from "motion/react";
-import { Link } from "react-router-dom";
-import { ArrowLeft } from "lucide-react";
+import { motion } from 'motion/react';
+import { Link } from 'react-router-dom';
+import { site } from '@/config/site';
 
 export default function AboutUs() {
   return (
@@ -14,56 +14,75 @@ export default function AboutUs() {
           <h1 className="text-5xl md:text-7xl font-bold tracking-tighter leading-none text-[#1a1a1a]">
             WER SIND WIR
           </h1>
-          
+
           <div className="prose prose-lg text-black max-w-none">
-            <p className="text-2xl font-medium leading-snug">
-              Studio Maru ist ein kreatives Designstudio aus Innsbruck. Wir gestalten digitale Erlebnisse, visuelle Identitäten und kreative Konzepte, die im Gedächtnis bleiben.
-            </p>
-            
+            <p className="text-2xl font-medium leading-snug">{site.about.intro}</p>
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-16">
               <div>
                 <h2 className="text-2xl font-bold mb-4">Unsere Vision</h2>
-                <p className="text-gray-700">
-                  Wir glauben an Design, das nicht nur gut aussieht, sondern auch funktioniert. Jedes Projekt ist eine neue Möglichkeit, Marken eine einzigartige Stimme zu geben und ihre Geschichte visuell zu erzählen.
-                </p>
+                <p className="text-gray-700">{site.about.vision}</p>
               </div>
               <div>
                 <h2 className="text-2xl font-bold mb-4">Unser Ansatz</h2>
-                <p className="text-gray-700">
-                  Vom ersten Buchstaben bis zum letzten Punkt.
-                </p>
+                <p className="text-gray-700">{site.about.approach}</p>
                 <div className="mt-4">
+                  {/* "A ——> ·" — vom ersten Buchstaben zum letzten Punkt */}
                   <span className="text-gray-700 text-2xl leading-none flex items-center gap-3">
-                    A 
-                    <svg width="60" height="24" viewBox="0 0 60 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-gray-700">
-                      <line x1="0" y1="12" x2="56" y2="12"></line>
-                      <polyline points="48 6 56 12 48 18"></polyline>
+                    A
+                    <svg
+                      width="60"
+                      height="24"
+                      viewBox="0 0 60 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="text-gray-700"
+                    >
+                      <line x1="0" y1="12" x2="56" y2="12" />
+                      <polyline points="48 6 56 12 48 18" />
                     </svg>
                     &bull;
                   </span>
                 </div>
               </div>
             </div>
-            
+
             <div className="mt-16 bg-black text-white p-8 md:p-12 rounded-3xl">
               <h2 className="text-3xl font-bold mb-6">Lass uns zusammenarbeiten</h2>
               <p className="text-gray-300 mb-8 max-w-xl">
-                Bereit für das nächste Projekt? Wir freuen uns darauf, von dir zu hören und gemeinsam etwas Beeindruckendes zu erschaffen.
+                Bereit für das nächste Projekt? Wir freuen uns darauf, von dir zu hören und gemeinsam
+                etwas Beeindruckendes zu erschaffen.
               </p>
               <div className="flex flex-wrap gap-4">
-                <a href="https://calendly.com/" target="_blank" rel="noopener noreferrer" className="bg-white text-black px-8 py-4 rounded-full font-bold uppercase text-sm tracking-widest hover:bg-gray-200 transition-colors">
+                <a
+                  href={site.contact.calendly}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-white text-black px-8 py-4 rounded-full font-bold uppercase text-sm tracking-widest hover:bg-gray-200 transition-colors"
+                >
                   Kostenloses Erstgespräch
                 </a>
-                <a href="https://wa.me/436642766355" target="_blank" rel="noopener noreferrer" className="bg-transparent border border-white text-white px-8 py-4 rounded-full font-bold uppercase text-sm tracking-widest hover:bg-white hover:text-black transition-colors">
+                <a
+                  href={site.contact.whatsapp}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-transparent border border-white text-white px-8 py-4 rounded-full font-bold uppercase text-sm tracking-widest hover:bg-white hover:text-black transition-colors"
+                >
                   WhatsApp
                 </a>
               </div>
             </div>
 
             <div className="mt-24 mb-8 flex justify-center">
-               <Link to="/impressum" className="text-sm font-bold uppercase tracking-widest text-[#1a1a1a] hover:text-gray-500 transition-colors underline underline-offset-4">
-                 Impressum
-               </Link>
+              <Link
+                to="/impressum"
+                className="text-sm font-bold uppercase tracking-widest text-[#1a1a1a] hover:text-gray-500 transition-colors underline underline-offset-4"
+              >
+                Impressum
+              </Link>
             </div>
           </div>
         </motion.div>

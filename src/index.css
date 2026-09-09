@@ -1,3 +1,4 @@
+/* Inter = Fließtext, Caveat = die "handgeschriebene" Schrift in der Kartenvorschau */
 @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Inter:wght@400..700&display=swap');
 @import "tailwindcss";
 
@@ -12,16 +13,37 @@
   --glass-bg: rgba(255, 255, 255, 0.1);
   --glass-border: rgba(255, 255, 255, 0.2);
   --glass-blur: 12px;
+
+  /* Der Inhaltsblock der Startseite: 1280px breit, mittig, 48px Innenrand. */
+  --inhalt-breite: 1280px;
+  --inhalt-rand: 48px;
+
+  /* Luft zwischen Zeichnung und Inhalt, damit sie sich nicht berühren. */
+  --illu-abstand: 16px;
+
+  /* Abstand vom Fensterrand bis zur ersten Schrift. Genau dieser Streifen
+     steht den Illustrationen zur Verfügung: 128px bei 1440px Fensterbreite,
+     368px bei 1920px. */
+  --freier-rand: calc(
+    max(0px, (100vw - var(--inhalt-breite)) / 2) + var(--inhalt-rand) - var(--illu-abstand)
+  );
+
+  /* Höhe des Inhaltsblocks, bestimmt von der Buttonspalte. Ober- und
+     unterhalb bleibt je die Hälfte des Restes frei. */
+  --inhalt-hoehe: 424px;
+  --freier-boden: calc(max(0px, (100vh - var(--inhalt-hoehe)) / 2 - var(--illu-abstand)));
 }
 
 @layer base {
   body {
     @apply font-sans text-primary antialiased;
+    /* Nur bei Überscroll sichtbar — die Seiten setzen ihren eigenen Hintergrund. */
     background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
     min-height: 100vh;
   }
 }
 
+/* Textauswahl in Schwarz/Weiß statt Browser-Blau */
 ::selection {
   background-color: black !important;
   color: white !important;
@@ -31,6 +53,48 @@
   background-color: black !important;
   color: white !important;
 }
+
+/* ----------------------------------------------------------------------
+   Illustrationen neben dem Inhalt halten
+
+   In den PNG-Dateien ist nur ein Teil der Fläche bezeichnet, der Rest ist
+   leer. Für die Frage "überlappt die Zeichnung den Text?" zählt nur die
+   Tinte, nicht der Dateirand. Gemessen wurde:
+
+     bird-wing.png   Tinte in den linken  47,1 % der Breite
+     frog-bird.png   Tinte in den rechten 63,7 % der Breite
+                     und in den unteren   41,6 % der Höhe
+
+   Die Breiten unten sind so gerechnet, dass die Tinte genau bis an den
+   Inhaltsblock heranreicht, ihn aber nie überlappt. Die Deckel (40rem /
+   45rem) sind die ursprünglichen Größen: Ab etwa 1720px Fensterbreite ist
+   genug Platz, dort ändert sich nichts mehr.
+   ---------------------------------------------------------------------- */
+
+.illu-fluegel {
+  /* Der Kasten sitzt 5 % über den linken Fensterrand hinaus, die Tinte endet
+     also bei 47,1 % − 5 % = 42,1 % der Kastenbreite.
+
+     (Die Alternative — Flügel in Originalgröße lassen und weiter aus dem Bild
+     schieben — wurde verworfen: Bei 1280 und 1440px war dann nur noch ein
+     Fetzen zu sehen statt eines kleinen, aber erkennbaren Flügels.) */
+  width: min(40rem, calc(var(--freier-rand) / 0.421));
+  transform: translateX(-5%) translateY(-53%);
+}
+
+.illu-frosch {
+  /* Zwei Wege, der Buttonspalte auszuweichen: rechts daneben bleiben oder
+     unter ihr. Der größere der beiden Werte gewinnt — meist ist unten mehr
+     Platz als seitlich. */
+  width: min(
+    45rem,
+    max(calc(var(--freier-rand) / 0.637), calc(var(--freier-boden) / 0.4335))
+  );
+}
+
+/* ---------------------------------------------------------------------- */
+/* Milchglas-Bausteine                                                    */
+/* ---------------------------------------------------------------------- */
 
 .glass-pill {
   background: rgba(255, 255, 255, 0.7);
@@ -58,7 +122,7 @@
   border-top: 1px solid rgba(255, 255, 255, 0.5);
 }
 
-/* Custom scrollbar for iOS feel */
+/* Schlanke Scrollbalken im iOS-Stil */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -76,49 +140,36 @@
   background: rgba(0, 0, 0, 0.2);
 }
 
+/* ---------------------------------------------------------------------- */
+/* Dunkler Modus des Kundenportals                                        */
+/*                                                                        */
+/* Eingeschaltet über die Klasse `dark-mode-active` am äußersten Element   */
+/* des Dashboards (siehe src/pages/dashboard/Dashboard.tsx). Nur dort —    */
+/* die öffentlichen Seiten haben keinen dunklen Modus.                     */
+/*                                                                        */
+/* Die Variante unten macht `dark:` in den Komponenten verfügbar. Damit    */
+/* steht an jeder Stelle sichtbar, wie sie dunkel aussieht, statt dass     */
+/* hier pauschal Tailwind-Klassen umdefiniert werden. Der alte Weg hatte   */
+/* den Fehler, dass alles Nicht-Aufgelistete hell blieb — weiße Karten     */
+/* auf schwarzem Grund, dunkler Text auf dunklem Grund.                    */
+/* ---------------------------------------------------------------------- */
+
+@custom-variant dark (&:where(.dark-mode-active, .dark-mode-active *));
+
+/* Die dunkle Palette. Ein Ton heller als reines Schwarz, damit sich
+   Karten überhaupt vom Hintergrund abheben können. */
+.dark-mode-active {
+  --portal-grund: #141414;
+  --portal-karte: #1e1e1e;
+  --portal-erhoben: #2a2a2a;
+  --portal-rand: rgba(255, 255, 255, 0.14);
+  --portal-text: #EBEBEB;
+  --portal-text-leise: #a3a3a3;
+}
+
 .dark-mode-active .section-glass {
-  background: rgba(0, 0, 0, 0.4);
-  border-color: rgba(255, 255, 255, 0.1);
-}
-
-.dark-mode-active .text-gray-900, 
-.dark-mode-active .text-black {
-  color: #ffffff;
-}
-
-.dark-mode-active .text-gray-600, 
-.dark-mode-active .text-gray-500 {
-  color: #a0a0a0;
-}
-
-.dark-mode-active .bg-black {
-  background-color: #ffffff;
-  color: #1a1a1a;
-}
-
-.dark-mode-active .border-black {
-  border-color: #ffffff;
-}
-
-.dark-mode-active .hover\:bg-black:hover {
-  background-color: #EBEBEB;
-  color: #1a1a1a;
-}
-
-.dark-mode-active .bg-white\/50 {
-  background-color: rgba(255, 255, 255, 0.08);
-}
-
-.dark-mode-active .bg-white\/40 {
-  background-color: rgba(255, 255, 255, 0.05);
-}
-
-.dark-mode-active .bg-\[\#F4F5FB\] {
-  background-color: #2a2a2a;
-}
-
-.dark-mode-active .border-white\/50 {
-  border-color: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.045);
+  border-top-color: var(--portal-rand);
 }
 
 .dark-mode-active ::-webkit-scrollbar-thumb {
@@ -129,7 +180,12 @@
   background: rgba(255, 255, 255, 0.3);
 }
 
-.dark-mode-active .blend-multiply-img {
-    filter: invert(1) opacity(0.8);
-    mix-blend-mode: screen !important;
+/* Die Tier-Illustrationen sind dunkle Striche auf Weiß. Auf dunklem Grund
+   müssen sie umgekehrt werden, sonst leuchtet das Papier statt der Tinte. */
+.dark-mode-active .illu-invertierbar {
+  filter: invert(1) hue-rotate(180deg);
+  mix-blend-mode: screen;
+  /* Deutlich zurückgenommen: Die Karten sind durchscheinend, eine hellere
+     Zeichnung würde durch sie hindurch stören. */
+  opacity: 0.28;
 }

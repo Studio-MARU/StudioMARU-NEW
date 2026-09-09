@@ -1,5 +1,11 @@
 name: Deploy to GitHub Pages
 
+# Ausgeliefert wird die Seite aus dem öffentlichen Repo Studio-MARU/StudioMARU-NEW;
+# dort hängt die Domain studiomaru.at (A-Records auf GitHub, www als CNAME).
+#
+# Dieselbe Datei liegt auch im privaten Arbeits-Repo studio-maru. Dort gibt es
+# kein GitHub Pages (der Tarif erlaubt es für private Repos nicht), deshalb die
+# Bedingung am Job: im privaten Repo wird er übersprungen statt fehlzuschlagen.
 on:
   push:
     branches: ["main"]
@@ -16,6 +22,7 @@ concurrency:
 
 jobs:
   deploy:
+    if: github.repository == 'Studio-MARU/StudioMARU-NEW'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -23,27 +30,27 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      
+
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: 'npm'
-          
+
       - name: Install dependencies
         run: npm ci
-        
+
       - name: Build project
         run: npm run build
-        
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
-        
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: './dist'
-          
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4

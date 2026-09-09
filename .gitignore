@@ -1,8 +1,11 @@
 node_modules/
-build/
 dist/
+build/
 coverage/
+
 .DS_Store
 *.log
 .env*
-!.env.example
+
+# Persönliche Claude-Code-Einstellungen (launch.json bleibt im Repo)
+.claude/settings.local.json
