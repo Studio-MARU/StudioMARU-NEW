@@ -3,12 +3,21 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Studio Maru — Wir schreiben Briefe, die gelesen werden.</title>
+    <title>Studio MARU 丸</title>
     <meta
       name="description"
       content="Studio Maru aus Innsbruck schreibt handgeschriebene Briefe und Postkarten. Echte Tinte, echtes Papier, maximale Aufmerksamkeit für deine Botschaft."
     />
-    <link rel="icon" type="image/png" href="/logoicon.png" />
+    <!--
+      Das Browser-Icon ist ein quadratischer Zuschnitt auf den Frosch aus
+      logoicon.png. Das ganze Zeichen mit Vogel wird bei 16-32px unlesbar, und
+      logoicon.png selbst ist 1657x1137 — nicht quadratisch, also für Google
+      als Favicon unbrauchbar. Der hellblaue Grund ist der des Logo-Kästchens
+      (#F4F5FB); ohne ihn verschwände die dunkle Zeichnung in dunklen Tableisten.
+    -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   </head>
   <body>
     <div id="root"></div>

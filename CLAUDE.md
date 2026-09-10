@@ -66,6 +66,34 @@ nie selbst, wäre als Scroll-Container aber der Grund, dass jedes `sticky`
 darin wirkungslos bleibt (die mitlaufende Vorschau im Projekt-Editor hing
 genau daran). Gescrollt wird das Fenster.
 
+## Veröffentlichen
+
+Die Seite liegt auf **studiomaru.at** und wird aus dem *öffentlichen* Repo
+`Studio-MARU/StudioMARU-NEW` ausgeliefert. Dieses hier (`studio-maru`) ist
+privat — GitHub Pages ist für private Repos im aktuellen Tarif gesperrt.
+
+Die DNS-Einträge stehen bei GoDaddy und sind fertig: Apex auf die vier
+GitHub-Pages-Adressen, `www` als CNAME auf `studio-maru.github.io`.
+
+Ein Push hierher ändert die Live-Seite **nicht**. Veröffentlicht wird ein
+Schnappschuss des aktuellen Baums als ein Commit auf die Historie des
+öffentlichen Repos — die private Commit-Historie bleibt dabei privat:
+
+```bash
+git fetch live main
+git push live "$(git commit-tree "$(git rev-parse main^{tree})" -p live/main -m 'Neuer Stand')":refs/heads/main
+```
+
+(`live` = https://github.com/Studio-MARU/StudioMARU-NEW.git; einmalig mit
+`git remote add live …` einrichten. In zsh die Klammern nicht weglassen,
+sonst frisst `:r` einen Teil des Refs.)
+
+Den Rest erledigt `deploy.yml` im öffentlichen Repo. Drei Dinge müssen dafür
+im Baum bleiben: `public/CNAME` (Domain), `public/.nojekyll` und das
+`postbuild`-Skript, das `index.html` als `404.html` kopiert — ohne die
+letzte liefert Pages bei `/dashboard` oder `/portfolio` einen Fehler statt
+der App.
+
 ## Kein Backend
 
 Anmeldung, Zugangscode, Projektanfrage, Chat und Downloads sind reine
