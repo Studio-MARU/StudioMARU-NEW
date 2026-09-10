@@ -47,7 +47,13 @@ for (const route of routen) {
   erzeugt.push(route);
 }
 
-const oeffentlich = ['/', ...erzeugt.filter((r) => !NICHT_INDEXIEREN.includes(r))];
+// Mit Schrägstrich am Ende: GitHub Pages leitet /portfolio auf /portfolio/
+// um (301), weil es ein Ordner ist. Ohne den Schrägstrich läuft jeder
+// Besucher — und Google — erst durch diese Weiterleitung.
+const oeffentlich = [
+  '/',
+  ...erzeugt.filter((r) => !NICHT_INDEXIEREN.includes(r)).map((r) => `${r}/`),
+];
 const heute = new Date().toISOString().slice(0, 10);
 
 writeFileSync(
