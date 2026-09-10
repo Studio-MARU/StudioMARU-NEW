@@ -9,7 +9,7 @@
     "preview": "vite preview",
     "clean": "rm -rf dist",
     "typecheck": "tsc --noEmit",
-    "postbuild": "cp dist/index.html dist/404.html"
+    "postbuild": "node scripts/seiten-erzeugen.mjs"
   },
   "dependencies": {
     "clsx": "^2.1.1",
